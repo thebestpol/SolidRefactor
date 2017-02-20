@@ -1,4 +1,4 @@
-package workshop.worldline.com.solidrefactor;
+package com.worldline.workshop.refactor;
 
 import org.junit.Test;
 

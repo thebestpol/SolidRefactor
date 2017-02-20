@@ -1,4 +1,4 @@
-<manifest package="workshop.worldline.com.solidrefactor"
+<manifest package="com.worldline.workshop.refactor"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
