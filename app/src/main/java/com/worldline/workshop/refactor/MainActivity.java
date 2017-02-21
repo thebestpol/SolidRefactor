@@ -1,16 +1,12 @@
 package com.worldline.workshop.refactor;
 
-import com.google.gson.Gson;
+import com.worldline.workshop.refactor.fragment.PointsListFragment;
 
 import android.app.Activity;
-import android.os.AsyncTask;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 
 /**
  * MainActivity
@@ -18,7 +14,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 
-    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,40 +21,21 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        recyclerView = ((RecyclerView) findViewById(R.id.recyclerView));
+        PointsListFragment fragment = PointsListFragment.newInstance();
+        addFragment(fragment);
+    }
 
-        new AsyncTask<Void, Void, ArrayList<POI>>() {
+    public void addFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.commit();
+    }
 
-            @Override
-            protected ArrayList<POI> doInBackground(Void... voids) {
-                try {
-                    URL url = new URL("http://t21services.herokuapp.com/points");
-
-                    URLConnection urlConnection = url.openConnection();
-                    InputStream inputStream = urlConnection.getInputStream();
-                    int size = inputStream.available();
-                    byte[] buffer = new byte[size];
-                    inputStream.read(buffer);
-                    inputStream.close();
-                    String jsonString = new String(buffer, "UTF-8");
-
-                    ServiceResponse serviceResponse = new Gson().fromJson(jsonString, ServiceResponse.class);
-
-                    return serviceResponse.getList();
-
-                } catch (Exception e) {
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(ArrayList<POI> objects) {
-                super.onPostExecute(objects);
-
-                // TODO sort list and load it
-
-            }
-        }.execute();
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.commit();
     }
 }
