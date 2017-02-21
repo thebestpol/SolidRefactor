@@ -1,12 +1,12 @@
 package com.worldline.workshop.refactor;
 
-import com.worldline.workshop.refactor.fragment.PointsListFragment;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+
+import com.worldline.workshop.refactor.fragment.PointsListFragment;
 
 /**
  * MainActivity
@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 }

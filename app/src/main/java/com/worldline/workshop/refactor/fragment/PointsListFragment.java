@@ -1,11 +1,5 @@
 package com.worldline.workshop.refactor.fragment;
 
-import com.google.gson.Gson;
-
-import com.worldline.workshop.refactor.POI;
-import com.worldline.workshop.refactor.R;
-import com.worldline.workshop.refactor.ServiceResponse;
-
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.gson.Gson;
+import com.worldline.workshop.refactor.MainActivity;
+import com.worldline.workshop.refactor.R;
+import com.worldline.workshop.refactor.adapter.PointOfInterestAdapter;
+import com.worldline.workshop.refactor.bean.PointOfInterest;
+import com.worldline.workshop.refactor.bean.PointsOfInterest;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class PointsListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         progress = fragmentView.findViewById(R.id.progress);
 
-        new AsyncTask<Void, Void, ArrayList<POI>>() {
+        new AsyncTask<Void, Void, ArrayList<PointOfInterest>>() {
 
             @Override
             protected void onPreExecute() {
@@ -54,7 +55,7 @@ public class PointsListFragment extends Fragment {
             }
 
             @Override
-            protected ArrayList<POI> doInBackground(Void... voids) {
+            protected ArrayList<PointOfInterest> doInBackground(Void... voids) {
                 try {
                     OkHttpClient client = new OkHttpClient();
 
@@ -65,8 +66,8 @@ public class PointsListFragment extends Fragment {
 
                     Response response = client.newCall(request).execute();
                     if (response.isSuccessful()) {
-                        ServiceResponse serviceResponse = new Gson()
-                                .fromJson(response.body().charStream(), ServiceResponse.class);
+                        PointsOfInterest serviceResponse = new Gson()
+                                .fromJson(response.body().charStream(), PointsOfInterest.class);
 
                         return serviceResponse.getList();
                     }
@@ -79,16 +80,21 @@ public class PointsListFragment extends Fragment {
             }
 
             @Override
-            protected void onPostExecute(ArrayList<POI> objects) {
+            protected void onPostExecute(ArrayList<PointOfInterest> objects) {
                 progress.setVisibility(View.GONE);
 
-                PointsListAdapter pointsListAdapter = new PointsListAdapter(getActivity(), objects);
-                recyclerView.setAdapter(pointsListAdapter);
+                PointOfInterestAdapter pointOfInterestAdapter = new PointOfInterestAdapter(PointsListFragment.this, objects);
+                recyclerView.setAdapter(pointOfInterestAdapter);
 
                 super.onPostExecute(objects);
             }
         }.execute();
 
         return fragmentView;
+    }
+
+    public void onPointOfInterestClicked(PointOfInterest pointOfInterest) {
+        MainActivity activity = (MainActivity) getActivity();
+        activity.replaceFragment(PointOfInterestDetailFragment.newInstance(pointOfInterest.getId()));
     }
 }
