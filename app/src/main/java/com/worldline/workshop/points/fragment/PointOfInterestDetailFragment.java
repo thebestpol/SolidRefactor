@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor.fragment;
+package com.worldline.workshop.points.fragment;
 
 import android.app.Fragment;
 import android.graphics.Typeface;
@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.worldline.workshop.refactor.R;
-import com.worldline.workshop.refactor.bean.PointOfInterest;
+import com.worldline.workshop.points.R;
+import com.worldline.workshop.points.bean.PointOfInterest;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

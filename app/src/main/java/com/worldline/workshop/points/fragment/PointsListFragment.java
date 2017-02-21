@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor.fragment;
+package com.worldline.workshop.points.fragment;
 
 import android.app.Fragment;
 import android.os.AsyncTask;
@@ -11,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
-import com.worldline.workshop.refactor.MainActivity;
-import com.worldline.workshop.refactor.R;
-import com.worldline.workshop.refactor.adapter.PointOfInterestAdapter;
-import com.worldline.workshop.refactor.bean.PointOfInterest;
-import com.worldline.workshop.refactor.bean.PointsOfInterest;
+import com.worldline.workshop.points.MainActivity;
+import com.worldline.workshop.points.R;
+import com.worldline.workshop.points.adapter.PointOfInterestAdapter;
+import com.worldline.workshop.points.bean.PointOfInterest;
+import com.worldline.workshop.points.bean.PointsOfInterest;
 
 import java.util.ArrayList;
 

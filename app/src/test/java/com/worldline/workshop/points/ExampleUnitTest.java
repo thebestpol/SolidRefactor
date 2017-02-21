@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor;
+package com.worldline.workshop.points;
 
 import org.junit.Test;
 

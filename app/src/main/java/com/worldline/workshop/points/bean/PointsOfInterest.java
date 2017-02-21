@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor.bean;
+package com.worldline.workshop.points.bean;
 
 import java.util.ArrayList;
 

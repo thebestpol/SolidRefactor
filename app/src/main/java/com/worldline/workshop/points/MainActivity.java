@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor;
+package com.worldline.workshop.points;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -6,7 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import com.worldline.workshop.refactor.fragment.PointsListFragment;
+import com.worldline.workshop.points.fragment.PointsListFragment;
 
 /**
  * MainActivity

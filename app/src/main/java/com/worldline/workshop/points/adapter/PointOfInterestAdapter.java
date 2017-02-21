@@ -1,4 +1,4 @@
-package com.worldline.workshop.refactor.adapter;
+package com.worldline.workshop.points.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.worldline.workshop.refactor.R;
-import com.worldline.workshop.refactor.bean.PointOfInterest;
-import com.worldline.workshop.refactor.fragment.PointsListFragment;
+import com.worldline.workshop.points.R;
+import com.worldline.workshop.points.bean.PointOfInterest;
+import com.worldline.workshop.points.fragment.PointsListFragment;
 
 import java.util.ArrayList;
 
