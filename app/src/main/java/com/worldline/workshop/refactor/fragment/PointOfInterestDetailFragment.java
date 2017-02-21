@@ -1,6 +1,7 @@
 package com.worldline.workshop.refactor.fragment;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -64,7 +65,6 @@ public class PointOfInterestDetailFragment extends Fragment {
         return view;
     }
 
-    @Override
     public void onResume() {
         super.onResume();
 
@@ -104,17 +104,18 @@ public class PointOfInterestDetailFragment extends Fragment {
 
             @Override
             protected void onPostExecute(PointOfInterest pointOfInterest) {
+                super.onPostExecute(pointOfInterest);
+
                 progress.setVisibility(View.GONE);
 
                 loadPointOfInterest(pointOfInterest);
-
-                super.onPostExecute(pointOfInterest);
             }
 
             @Override
             protected void onPreExecute() {
-                progress.setVisibility(View.VISIBLE);
                 super.onPreExecute();
+
+                progress.setVisibility(View.VISIBLE);
             }
         }.execute();
     }
@@ -122,7 +123,7 @@ public class PointOfInterestDetailFragment extends Fragment {
     private SpannableStringBuilder buildBoldLabelString(String label) {
         int x = label.indexOf(':');
         SpannableStringBuilder s = new SpannableStringBuilder(label);
-        s.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, x, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        s.setSpan(new StyleSpan(Typeface.BOLD), 0, x, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         return s;
     }

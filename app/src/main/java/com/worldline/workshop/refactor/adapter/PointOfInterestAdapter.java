@@ -21,7 +21,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter {
 
     private ArrayList<PointOfInterest> elements;
 
-    private PointsListFragment   context;
+    private PointsListFragment context;
 
     public PointOfInterestAdapter(PointsListFragment context, ArrayList<PointOfInterest> elements) {
         this.context = context;

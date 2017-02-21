@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
     public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_left,
+                R.anim.slide_out_right);
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
