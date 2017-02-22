@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.worldline.workshop.points.fragment.PointsListFragment;
 
@@ -20,6 +21,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        Handler handler = new Handler();
+
 
         PointsListFragment fragment = PointsListFragment.newInstance();
         addFragment(fragment);
