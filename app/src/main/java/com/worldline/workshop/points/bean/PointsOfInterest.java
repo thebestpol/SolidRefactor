@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class PointsOfInterest {
 
+    // FIXME Always use abstractions, Never initialize for free
     private ArrayList<PointOfInterest> list = new ArrayList<>();
 
     public PointsOfInterest() {

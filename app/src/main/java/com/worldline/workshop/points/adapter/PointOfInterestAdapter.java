@@ -1,5 +1,9 @@
 package com.worldline.workshop.points.adapter;
 
+import com.worldline.workshop.points.R;
+import com.worldline.workshop.points.bean.PointOfInterest;
+import com.worldline.workshop.points.fragment.PointsListFragment;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,22 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.worldline.workshop.points.R;
-import com.worldline.workshop.points.bean.PointOfInterest;
-import com.worldline.workshop.points.fragment.PointsListFragment;
-
 import java.util.ArrayList;
 
 /**
  * PointOfInterestAdapter
  */
-
+// FIXME Generics not used correctly
 public class PointOfInterestAdapter extends RecyclerView.Adapter {
 
+    // FIxme always use abstactions
     private ArrayList<PointOfInterest> elements;
 
     private PointsListFragment context;
 
+    // FIXME waaaat
     public PointOfInterestAdapter(PointsListFragment context, ArrayList<PointOfInterest> elements) {
         this.context = context;
         this.elements = elements;
@@ -30,6 +32,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //FIXME WAT?
         Context context = this.context.getActivity();
         return new PointOfInterestViewHolder(
                 LayoutInflater.from(context).inflate(R.layout.item_point, parent, false));
@@ -45,6 +48,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter {
         return elements.size();
     }
 
+    // FIXME inner or nested?
     private class PointOfInterestViewHolder extends RecyclerView.ViewHolder {
 
         private PointOfInterest pointOfInterest;
@@ -61,6 +65,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    // FIXME WAT??
                     context.onPointOfInterestClicked(pointOfInterest);
                 }
             });
@@ -68,6 +73,7 @@ public class PointOfInterestAdapter extends RecyclerView.Adapter {
 
         public void loadElement(PointOfInterest pointOfInterest) {
             this.pointOfInterest = pointOfInterest;
+            //FIXME this should be used only when is needed
             itemId.setText(this.pointOfInterest.getId());
             title.setText(this.pointOfInterest.getTitle());
         }

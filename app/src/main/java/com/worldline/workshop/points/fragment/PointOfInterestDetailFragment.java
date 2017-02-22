@@ -1,10 +1,14 @@
 package com.worldline.workshop.points.fragment;
 
+import com.google.gson.Gson;
+
+import com.worldline.workshop.points.R;
+import com.worldline.workshop.points.bean.PointOfInterest;
+
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
@@ -12,10 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
-import com.worldline.workshop.points.R;
-import com.worldline.workshop.points.bean.PointOfInterest;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -48,7 +48,6 @@ public class PointOfInterestDetailFragment extends Fragment {
         return fragment;
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_point_detail, container, false);
@@ -61,16 +60,15 @@ public class PointOfInterestDetailFragment extends Fragment {
 
         progress = view.findViewById(R.id.progress);
 
-
         return view;
     }
 
+    // FIXME Override annotation
     public void onResume() {
         super.onResume();
 
         Bundle arguments = getArguments();
         pointId = arguments.getString(KEY_POINT_ID);
-
 
         fetchPointDetails();
     }
@@ -83,7 +81,7 @@ public class PointOfInterestDetailFragment extends Fragment {
                     OkHttpClient client = new OkHttpClient();
 
                     Request request = new Request.Builder()
-                            .url("http://t21services.herokuapp.com/points/"+pointId)
+                            .url("http://t21services.herokuapp.com/points/" + pointId)
                             .get()
                             .build();
 
@@ -96,6 +94,7 @@ public class PointOfInterestDetailFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
+                    // FIXME errors must be handled
                     e.printStackTrace();
                 }
 
@@ -120,6 +119,7 @@ public class PointOfInterestDetailFragment extends Fragment {
         }.execute();
     }
 
+    // FIXME It's not responsibility of this class
     private SpannableStringBuilder buildBoldLabelString(String label) {
         int x = label.indexOf(':');
         SpannableStringBuilder s = new SpannableStringBuilder(label);
@@ -128,9 +128,7 @@ public class PointOfInterestDetailFragment extends Fragment {
         return s;
     }
 
-
     private void loadPointOfInterest(PointOfInterest pointOfInterest) {
-
         pointTitle.setText(buildBoldLabelString("Title: \n" + pointOfInterest.getTitle()));
         pointDescription.setText(buildBoldLabelString("Description: \n"
                 + pointOfInterest.getDescription()));
