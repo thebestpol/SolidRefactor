@@ -122,7 +122,25 @@ public class PointDetailScreenShould {
 
         @Override
         public void start() {
+           /* view.showProgress();
+            model.getData(new Callback<PointsList>() {
+                @Override
+                public void ok(PointsList data) {
+                    view.hideProgress();
+                    if (data != null) {
 
+                        view.loadContent(null);
+                    } else {
+                        view.showError();
+                    }
+                }
+
+                @Override
+                public void ko(Throwable throwable) {
+                    view.hideProgress();
+                    view.showError();
+                }
+            });*/
         }
 
         @Override
