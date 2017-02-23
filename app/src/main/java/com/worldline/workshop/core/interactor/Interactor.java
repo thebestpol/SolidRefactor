@@ -2,9 +2,8 @@ package com.worldline.workshop.core.interactor;
 
 import com.worldline.workshop.core.Callback;
 
-/**
- * Created by PoL on 22/02/17.
- */
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class Interactor {
 
@@ -12,15 +11,22 @@ public abstract class Interactor {
 
     public void execute(Callback callback) {
         this.callback = callback;
-
-        buildTask().execute();
+        run();
     }
 
-    protected abstract Task buildTask();
+    protected abstract void run();
+
+    public abstract void stop();
 
 
-    interface Task {
-        void execute();
+    protected class InteractorThreadFactory implements ThreadFactory {
+        private static final String THREAD_PREFIX = "PoolExecutor_";
+
+        private AtomicLong counter = new AtomicLong(0);
+
+        @Override
+        public Thread newThread(Runnable r) {
+            return new Thread(r, THREAD_PREFIX + counter.getAndIncrement());
+        }
     }
-
 }
